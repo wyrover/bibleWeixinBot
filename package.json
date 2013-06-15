@@ -1,5 +1,5 @@
 {
-  "name": "weixin-robot-example",
+  "name": "bible-weixin-bot",
   "version": "0.0.3",
   "main": "app.js",
   "dependencies": {
@@ -28,12 +28,8 @@
     "webot",
     "wechat"
   ],
-  "description": "weixin-robot 模块示例",
+  "description": "圣经微信机器人",
   "repository": "https://github.com/node-webot/webot-example.git",
-  "author": "Jesse Yang <jyyjcc@gmail.com>",
-  "contributors": [
-    "Jesse Yang <jyyjcc@gmail.com> (http://github.com/ktmud)",
-    "TZ <atian25@qq.com> (http://atian25.iteye.com/)"
-  ],
+  "author": "Anderson Zhang <anderson916@gmail.com>",
   "license": "MIT"
 }

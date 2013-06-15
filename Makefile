@@ -1,8 +1,8 @@
 start:
-	@export DEBUG=webot* && npm start
+	@export DEBUG=bible-weixin-bot && npm start
 
 clear:
 	@clear
 
 test: clear
-	@export DEBUG=webot* && export WX_TOKEN=test123 && ./node_modules/.bin/mocha
+	@export DEBUG=bible-weixin-bot && export WX_TOKEN=test123 && ./node_modules/.bin/mocha

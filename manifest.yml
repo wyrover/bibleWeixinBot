@@ -8,4 +8,4 @@ applications:
   url: webot.${target-base}
   path: .
 env:
-  DEBUG: webot.*
+  DEBUG: bible-*
