@@ -27,6 +27,10 @@ mongoDB = mongo.db("localhost:27017/bible",
 )
 exports.getVerses = (bookName, chapter, startVerse, endVerse, callback) ->
   endVerse = startVerse  unless endVerse
+  log bookName
+  log chapter
+  log startVerse
+  log endVerse
   mongoDB.collection("verse").find(
     $query:
       version: 'CUNPSS'

@@ -73,6 +73,13 @@ describe "Rule", ->
         detect info, err, json, /主耶稣啊，我愿你来/
         done()
 
+    it "should return ps 119:29-44", (done) ->
+      info.text = "诗篇第一百一十九篇二十九到四十四节"
+      sendRequest info, (err, json) ->
+        detect info, err, json, /诗篇119:29-44/
+        detect info, err, json, /求你叫真理的话总不离开我口/
+        done()
+
   #测试图文消息
   describe "news", ->
     
