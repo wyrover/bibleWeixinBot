@@ -48,24 +48,28 @@ describe "Rule", ->
     it "should return john 3:16", (done) ->
       info.text = "约翰福音三章十六节"
       sendRequest info, (err, json) ->
+        detect info, err, json, /约翰福音3:16/
         detect info, err, json, /神爱世人/
         done()
 
     it "should return john 3:16-21", (done) ->
       info.text = "约翰福音三章十六到二十一节"
       sendRequest info, (err, json) ->
+        detect info, err, json, /约翰福音3:16-21/
         detect info, err, json, /但行真理的必来就光/
         done()
 
     it "should return gen 22:17-18", (done) ->
       info.text = "创世记二十二章十七到十八节"
       sendRequest info, (err, json) ->
+        detect info, err, json, /创世记22:17-18/
         detect info, err, json, /地上万国都必因你的后裔得福/
         done()
 
     it "should return rev 22:19-21", (done) ->
       info.text = "启示录二十二章十九到二十一节"
       sendRequest info, (err, json) ->
+        detect info, err, json, /启示录22:19-21/
         detect info, err, json, /主耶稣啊，我愿你来/
         done()
 
