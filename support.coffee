@@ -48,6 +48,8 @@ exports.getVerses = (bookName, chapter, startVerse, endVerse, isShortName, callb
     callback result
 
 exports.getVersesByKeyword = (keyword,callback)->
+  keyword = keyword.replace('。','')
+  
   r = new RegExp(keyword)
   query = 
     $query:

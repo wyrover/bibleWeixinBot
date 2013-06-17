@@ -116,7 +116,7 @@ describe "Rule", ->
         done()
 
     it "should return search", (done) ->
-      info.text = "搜索 我就是道路"
+      info.text = "搜索我就是道路。"
       sendRequest info, (err, json) ->
         detect info, err, json, /约翰福音14:6/
         detect info, err, json, /若不借着我，没有人能到父那里去/
