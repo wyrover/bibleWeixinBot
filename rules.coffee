@@ -13,7 +13,7 @@ getVersesByKeyword = require("./support").getVersesByKeyword
 ###
 module.exports = exports = (webot) ->
 
-  helpLines = ["建议您试试这几条指令:", "1. 圣经章节 : 比如约翰福音3:16-20或者使用微信语音输入约翰福音三章十六到二十节", "2. 赞美诗完整或部分歌名 : 比如奇异恩典，你是我永远的救主 (尚未完成）"].join("\n")
+  helpLines = ["建议您试试这几条指令:", "1. 圣经章节 : 输入格式： ‘约3:16-20’ 或 ‘约 3 16 20’，或者使用微信语音输入： 约翰福音三章十六到二十节", "2. 搜索经文内容。格式： ‘搜索 耶稣基督’ 或者 ‘s 耶稣基督',其中空格也可以去掉。 "].join("\n")
   reg_help = /^(help|帮助|\?|？)$/i
   webot.set
     
@@ -27,7 +27,7 @@ module.exports = exports = (webot) ->
 
     handler: (info) ->
       reply =
-        title: "感谢您收听一粒麦子基督徒助手"
+        title: "感谢您收听一粒麦子基督徒微信助手"
         pic: "https://github.com/anderson916/bibleWeixinBot/blob/master/qrcode.jpg"
         description: helpLines
 
