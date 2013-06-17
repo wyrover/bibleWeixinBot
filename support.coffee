@@ -27,10 +27,6 @@ mongoDB = mongo.db("localhost:27017/bible",
 )
 exports.getVerses = (bookName, chapter, startVerse, endVerse, isShortName, callback) ->
   endVerse = startVerse  unless endVerse
-  console.log bookName
-  console.log chapter
-  console.log startVerse
-  console.log endVerse
 
   query = 
     version: 'CUNPSS'
@@ -44,8 +40,6 @@ exports.getVerses = (bookName, chapter, startVerse, endVerse, isShortName, callb
   else
     query.bookLongName = bookName
 
-  console.log query
-
   mongoDB.collection("verse").find(
     $query: query  
     $orderby:
@@ -53,3 +47,15 @@ exports.getVerses = (bookName, chapter, startVerse, endVerse, isShortName, callb
   ).toArray (err, result) ->
     callback result
 
+exports.getVersesByKeyword = (keyword,callback)->
+  r = new RegExp(keyword)
+  query = 
+    $query:
+      version: 'CUNPSS'
+      content: r
+    $orderby:
+      bookId: 1
+      chapter: 1
+      verse: 1
+  mongoDB.collection("verse").find(query).toArray (err, result) ->
+    callback result

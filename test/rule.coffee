@@ -55,7 +55,6 @@ describe "Rule", ->
     it "should return john 3:16", (done) ->
       info.text = "约 3 : 16 "
       sendRequest info, (err, json) ->
-        console.log json
         detect info, err, json, /约翰福音3:16/
         detect info, err, json, /神爱世人/
         done()
@@ -114,6 +113,20 @@ describe "Rule", ->
       sendRequest info, (err, json) ->
         detect info, err, json, /诗篇119:29-44/
         detect info, err, json, /求你叫真理的话总不离开我口/
+        done()
+
+    it "should return search", (done) ->
+      info.text = "搜索 我就是道路"
+      sendRequest info, (err, json) ->
+        detect info, err, json, /约翰福音14:6/
+        detect info, err, json, /若不借着我，没有人能到父那里去/
+        done()
+
+    it "should return search", (done) ->
+      info.text = "搜索 耶稣为主"
+      sendRequest info, (err, json) ->
+        detect info, err, json, /罗马书10:9/
+        detect info, err, json, /传基督耶稣为主/
         done()
 
   #测试图文消息

@@ -6,6 +6,7 @@ error = debug("bible-weixin-bot:error")
 _ = require("underscore")._
 chinese2digit = require("./support").chinese2digit
 getVerses = require("./support").getVerses
+getVersesByKeyword = require("./support").getVersesByKeyword
 
 ###
 初始化路由规则
@@ -79,7 +80,6 @@ module.exports = exports = (webot) ->
   webot.set /([创|出|利|民|申|书|士|得|撒上|撒下|王上|王下|代上|代下|拉|尼|斯|伯|诗|箴|传|歌|赛|耶|哀|结|但|何|珥|摩|俄|拿|弥|鸿|哈|番|该|亚|玛|太|可|路|约|徒|罗|林前|林后|加|弗|腓|西|帖前|帖后|提前|提后|多|门|来|雅|彼前|彼后|约一|约二|约三|犹|启])\s*(\d+)\s*[:|：]*\s*(\d+)\s*[-|——]*\s*(\d+)?/, (info,next) ->
     r = /([创|出|利|民|申|书|士|得|撒上|撒下|王上|王下|代上|代下|拉|尼|斯|伯|诗|箴|传|歌|赛|耶|哀|结|但|何|珥|摩|俄|拿|弥|鸿|哈|番|该|亚|玛|太|可|路|约|徒|罗|林前|林后|加|弗|腓|西|帖前|帖后|提前|提后|多|门|来|雅|彼前|彼后|约一|约二|约三|犹|启])\s*(\d+)\s*[:|：]*\s*(\d+)\s*[-|——]*\s*(\d+)?/
     match = r.exec(info.text)
-    console.log match
     bookName = match[1]
     chapter = parseInt(match[2])
     if match[3]
@@ -102,6 +102,15 @@ module.exports = exports = (webot) ->
         lines.push verse.content
       next null,lines.join("\n")
       
+  webot.set /[搜索|s]\s*(.*)/,(info,next)->
+    r = /(搜索|s)\s*(.*)/
+    match = r.exec(info.text)
+    getVersesByKeyword match[2],(result)->
+      lines = []
+      for verse in result
+        lines.push verse.bookLongName+verse.chapter+':'+verse.verse+' '+verse.content
+      next null,lines.join("\n")
+
   #所有消息都无法匹配时的fallback
   webot.set /.*/, (info) ->
     
