@@ -25,20 +25,29 @@ mongo = require("mongoskin")
 mongoDB = mongo.db("localhost:27017/bible",
   safe: true
 )
-exports.getVerses = (bookName, chapter, startVerse, endVerse, callback) ->
+exports.getVerses = (bookName, chapter, startVerse, endVerse, isShortName, callback) ->
   endVerse = startVerse  unless endVerse
-  log bookName
-  log chapter
-  log startVerse
-  log endVerse
+  console.log bookName
+  console.log chapter
+  console.log startVerse
+  console.log endVerse
+
+  query = 
+    version: 'CUNPSS'
+    chapter: parseInt(chapter)
+    verse:
+      $gte: startVerse
+      $lte: endVerse
+
+  if isShortName
+    query.bookShortName = bookName
+  else
+    query.bookLongName = bookName
+
+  console.log query
+
   mongoDB.collection("verse").find(
-    $query:
-      version: 'CUNPSS'
-      bookLongName: bookName
-      chapter: chapter
-      verse:
-        $gte: startVerse
-        $lte: endVerse
+    $query: query  
     $orderby:
       verse: 1
   ).toArray (err, result) ->
