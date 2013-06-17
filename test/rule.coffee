@@ -123,7 +123,7 @@ describe "Rule", ->
         done()
 
     it "should return search", (done) ->
-      info.text = "搜索 耶稣为主"
+      info.text = "S 耶稣基督"
       sendRequest info, (err, json) ->
         detect info, err, json, /罗马书10:9/
         detect info, err, json, /传基督耶稣为主/

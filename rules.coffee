@@ -111,7 +111,7 @@ module.exports = exports = (webot) ->
       for verse in result
         lines.push verse.bookLongName+verse.chapter+':'+verse.verse+' '+verse.content
         i = i+1
-        if i>15 break
+        if i>3 next null,lines.join("\n")
       next null,lines.join("\n")
 
   #所有消息都无法匹配时的fallback

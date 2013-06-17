@@ -49,7 +49,7 @@ exports.getVerses = (bookName, chapter, startVerse, endVerse, isShortName, callb
 
 exports.getVersesByKeyword = (keyword,callback)->
   keyword = keyword.replace('。','')
-  
+
   r = new RegExp(keyword)
   query = 
     $query:
@@ -60,4 +60,5 @@ exports.getVersesByKeyword = (keyword,callback)->
       chapter: 1
       verse: 1
   mongoDB.collection("verse").find(query).toArray (err, result) ->
+    log result
     callback result
