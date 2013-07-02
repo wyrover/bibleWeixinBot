@@ -7,7 +7,7 @@ _ = require("underscore")._
 chinese2digit = require("./support").chinese2digit
 getVerses = require("./support").getVerses
 getVersesByKeyword = require("./support").getVersesByKeyword
-
+getFullVerseName  = require("./support").getFullVerseName
 ###
 初始化路由规则
 ###
@@ -52,10 +52,8 @@ module.exports = exports = (webot) ->
     getVerses bookName,chapter,startVerse,chinese2digit(match[4]),false,(result)->
       info.flag = true
       lines=[]
-      if result.length==1
-        lines.push bookName+chapter+':'+startVerse
-      else if result.length>1
-        lines.push bookName+chapter+':'+startVerse+'-'+result[result.length-1].verse
+      lines.push getFullVerseName(bookName,chapter,startVerse,result.length)
+      
       for verse in result
         lines.push verse.content
       next null,lines.join("\n")
@@ -69,10 +67,7 @@ module.exports = exports = (webot) ->
     getVerses bookName,chapter,startVerse,false,false,(result)->
       info.flag = true
       lines=[]
-      if result.length==1
-        lines.push bookName+chapter+':'+startVerse
-      else if result.length>1
-        lines.push bookName+chapter+':'+startVerse+'-'+result[result.length-1].verse
+      lines.push getFullVerseName(bookName,chapter,startVerse,result.length)
       for verse in result
         lines.push verse.content
       next null,lines.join("\n")
@@ -94,10 +89,7 @@ module.exports = exports = (webot) ->
       fullName = result[0].bookLongName
       info.flag = true
       lines=[]
-      if result.length==1
-        lines.push fullName+chapter+':'+startVerse
-      else if result.length>1
-        lines.push fullName+chapter+':'+startVerse+'-'+result[result.length-1].verse
+      lines.push getFullVerseName(fullName,chapter,startVerse,result.length)
       for verse in result
         lines.push verse.content
       next null,lines.join("\n")
@@ -109,7 +101,7 @@ module.exports = exports = (webot) ->
       lines = []
       i=0
       for verse in result
-        lines.push verse.bookLongName+verse.chapter+':'+verse.verse+' '+verse.content
+        lines.push getFullVerseName(verse.bookLongName,verse.chapter,verse.verse,1)
         i = i+1
         if i>3
           break
