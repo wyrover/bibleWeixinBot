@@ -60,12 +60,14 @@ exports.getVersesByKeyword = (keyword,callback)->
       chapter: 1
       verse: 1
   mongoDB.collection("verse").find(query).toArray (err, result) ->
-    log result
+    console.log result
     callback result
 
 exports.getFullVerseName = (bookName,chapter,startVerse,count) ->
   if count==1
     '【'+bookName+' '+chapter+':'+startVerse+'】'
   else if count>1
-    '【'+bookName+' '+chapter+':'+startVerse+'-'+result[result.length-1].verse+'】'
+    '【'+bookName+' '+chapter+':'+startVerse+'-'+(startVerse+count-1)+'】'
+  else
+    ''
   

@@ -102,6 +102,7 @@ module.exports = exports = (webot) ->
       i=0
       for verse in result
         lines.push getFullVerseName(verse.bookLongName,verse.chapter,verse.verse,1)
+        lines.push verse.content
         i = i+1
         if i>3
           break

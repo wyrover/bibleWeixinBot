@@ -8,7 +8,6 @@ app = require("../app.js")
 
 #公用检测指令
 detect = (info, err, json, content) ->
-  console.log json
   should.exist info
   should.not.exist err
   should.exist json
