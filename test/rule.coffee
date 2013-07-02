@@ -25,7 +25,7 @@ describe "Rule", ->
     info =
       sp: "bibleWeixinBot"
       user: "client"
-      type: "text"
+
 
   
   #测试文本消息
