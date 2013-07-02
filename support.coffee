@@ -60,7 +60,6 @@ exports.getVersesByKeyword = (keyword,callback)->
       chapter: 1
       verse: 1
   mongoDB.collection("verse").find(query).toArray (err, result) ->
-    console.log result
     callback result
 
 exports.getFullVerseName = (bookName,chapter,startVerse,count) ->

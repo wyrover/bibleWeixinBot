@@ -98,15 +98,13 @@ module.exports = exports = (webot) ->
     r = /(搜索|s|S)\s*(.*)/
     match = r.exec(info.text)
     getVersesByKeyword match[2],(result)->
-      lines = []
-      i=0
+      verses = []
       for verse in result
+        lines = []
         lines.push getFullVerseName(verse.bookLongName,verse.chapter,verse.verse,1)
         lines.push verse.content
-        i = i+1
-        if i>3
-          break
-      next null,lines.join("\n")
+        verses.push lines.join("\n")
+      next null,verses
 
   #所有消息都无法匹配时的fallback
   webot.set /.*/, (info) ->

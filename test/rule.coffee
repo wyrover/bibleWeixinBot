@@ -16,7 +16,6 @@ detect = (info, err, json, content) ->
     json.should.have.property "Content"
     json.Content.should.match content
 
-
 #测试规则
 describe "Rule", ->
   
@@ -123,9 +122,9 @@ describe "Rule", ->
         done()
 
     it "should return search", (done) ->
-      info.text = "S 耶稣基督的家谱"
+      info.text = "S 耶稣基督"
       sendRequest info, (err, json) ->
-        detect info, err, json, /马太福音 1:1/
+        detect info, err, json, /耶稣基督/
         done()
 
   #测试图文消息
